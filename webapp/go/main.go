@@ -16,6 +16,8 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/newrelic/go-agent/v3/integrations/nrecho-v4"
+	"github.com/newrelic/go-agent/v3/newrelic"
 
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/session"
@@ -126,6 +128,21 @@ func main() {
 	cookieStore := sessions.NewCookieStore(secret)
 	cookieStore.Options.Domain = "*.u.isucon.local"
 	e.Use(session.Middleware(cookieStore))
+
+	var app *newrelic.Application
+	var err error
+	app, err = newrelic.NewApplication(
+		newrelic.ConfigAppName(os.Getenv("NEW_RELIC_APP_NAME")),
+		newrelic.ConfigLicense(os.Getenv("NEW_RELIC_LICENSE_KEY")),
+		newrelic.ConfigAppLogEnabled(false),
+	)
+	if err != nil {
+		fmt.Printf("failed to init newrelic NewApplication reason: %v", err)
+	} else {
+		fmt.Println("newrelic init success")
+	}
+	e.Use(nrecho.Middleware(app))
+
 	// e.Use(middleware.Recover())
 
 	// 初期化
