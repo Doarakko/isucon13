@@ -63,8 +63,18 @@ https://isucon-workshop.trap.show/text/chapter-3/1-SlowQueryLog.html
 
 ```sh
 cp ~/webapp/go/.env.example ~/webapp/go/.env
+sudo systemctl restart isupipe-go.service
 ```
+
+https://newrelic.com/jp/blog/how-to-relic/isucon-go-agent
+
+### アクセスログ
+
+```sh
+sudo cat /var/log/nginx/access.log | alp ltsv -m"/api/livestream/\d+/livecomment","/api/livestream/\d+/reaction","/api/user/.+/icon","/api/livestream/\d+/livecomment/\d+/report","/api/livestream/\d+/moderate","/api/livestream/\d+/statistics","/api/livestream/\d+/ngwords","/api/livestream/\d+/enter","/api/user/.+/statistics","/api/user/.+/theme","/api/livestream/\d+/exit","/api/livestream/\d+/report","/api/livestream/\d+" --sort sum -r
 ```
+
+https://isucon-workshop.trap.show/text/chapter-3/2-AccessLog.html
 
 ## Usage
 
@@ -96,6 +106,12 @@ cat ~/webapp/sql/initdb.d/10_schema.sql | sudo mysql isupipe
 ```
 
 https://gist.github.com/kazeburo/bccc2d2b2b9dc307b5640ae855f3e0bf#isupipe-%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%B9%E3%82%AD%E3%83%BC%E3%83%9E%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
+
+### プロセス確認
+
+```sh
+systemctl list-unit-files --type=service
+```
 
 ## References
 
