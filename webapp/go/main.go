@@ -14,6 +14,7 @@ import (
 
 	"github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/newrelic/go-agent/v3/integrations/nrecho-v4"
@@ -121,6 +122,13 @@ func initializeHandler(c echo.Context) error {
 }
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	newRelicAppName := os.Getenv("NEW_RELIC_APP_NAME")
+	newRelicLicenseKey := os.Getenv("NEW_RELIC_LICENSE_KEY")
+
 	e := echo.New()
 	e.Debug = true
 	e.Logger.SetLevel(echolog.DEBUG)
@@ -130,10 +138,9 @@ func main() {
 	e.Use(session.Middleware(cookieStore))
 
 	var app *newrelic.Application
-	var err error
 	app, err = newrelic.NewApplication(
-		newrelic.ConfigAppName(os.Getenv("NEW_RELIC_APP_NAME")),
-		newrelic.ConfigLicense(os.Getenv("NEW_RELIC_LICENSE_KEY")),
+		newrelic.ConfigAppName(newRelicAppName),
+		newrelic.ConfigLicense(newRelicLicenseKey),
 		newrelic.ConfigAppLogEnabled(false),
 	)
 	if err != nil {

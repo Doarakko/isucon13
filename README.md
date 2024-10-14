@@ -57,6 +57,15 @@ pt-query-digest --version
 sudo pt-query-digest /var/log/mysql/mysql-slow.log
 ```
 
+https://isucon-workshop.trap.show/text/chapter-3/1-SlowQueryLog.html
+
+### New Relic
+
+```sh
+cp ~/webapp/go/.env.example ~/webapp/go/.env
+```
+```
+
 ## Usage
 
 ### ssh
@@ -78,13 +87,15 @@ cd ~/
 
 ```sh
 cd ~/
-mysql -u isucari -pisucon
+mysql -u isucon -pisucon
 mysql> DROP DATABASE isupipe;
 mysql> CREATE DATABASE isupipe;
 
 cat ~/webapp/sql/initdb.d/10_schema.sql | sudo mysql isupipe
 ./webapp/sql/init.sh
 ```
+
+https://gist.github.com/kazeburo/bccc2d2b2b9dc307b5640ae855f3e0bf#isupipe-%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%B9%E3%82%AD%E3%83%BC%E3%83%9E%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
 
 ## References
 
