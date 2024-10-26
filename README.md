@@ -97,7 +97,8 @@ cd ~/
 
 ```sh
 cd ~/
-mysql -u isucon -pisucon
+mysql -u isucon -pisucon isupipe
+mysql> use isupipe;
 mysql> DROP DATABASE isupipe;
 mysql> CREATE DATABASE isupipe;
 
@@ -115,6 +116,17 @@ systemctl list-unit-files --type=service
 
 ## References
 
-- https://isucon-workshop.trap.show/
+- [ISUCON初心者向け講習会](https://isucon-workshop.trap.show/)
 - https://github.com/isucon/isucon13
 - https://github.com/matsuu/aws-isucon
+- https://gist.github.com/south37/d4a5a8158f49e067237c17d13ecab12a
+- https://speakerdeck.com/sadnessojisan/isuconru-men-yi-qian-isunarabe-lt-number-1
+- https://poyo.hatenablog.jp/entry/2022/08/28/191329
+- https://blog.yuuk.io/entry/web-operations-isucon
+- https://blog.yuuk.io/entry/linux-server-operations
+- https://kazeburo.hatenablog.com/entry/2014/10/14/170129
+- https://www.slideshare.net/slideshow/isucon-summerclass2014action2final/38224673
+- https://www.slideshare.net/slideshow/isucon-yapcasia-tokyo-2015/51993443
+- https://speakerdeck.com/yuukit/web-operations-about-isucon
+- [Ansible playbooks for isucon](https://github.com/pddg/isu12f)
+- [[ISUCON用] 複数台同時デプロイスクリプト(Golang)](https://qiita.com/momotaro98/items/694000dfb736d0316441)
