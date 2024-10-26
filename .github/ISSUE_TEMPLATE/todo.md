@@ -1,6 +1,6 @@
 ---
 name: todo
-description: todo
+about: todo
 ---
 
 # Todo
