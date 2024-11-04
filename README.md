@@ -66,14 +66,14 @@ make bench
 
 ```sh
 ssh isucon13
-make asq
+make slowq
 ```
 
 ### アクセスログ
 
 ```sh
 ssh isucon13
-make aal
+make alp
 ```
 
 ### DB 接続

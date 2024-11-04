@@ -8,13 +8,13 @@ deploy-%:
 	./deploy.sh $*
 
 # remote host
-.PHONY: asq
-asq:
+.PHONY: slowq
+slowq:
 	sudo pt-query-digest /var/log/mysql/mysql-slow.log > ~/log/mysql-slow.log-$(shell date +%Y-%m-%d-%H-%M-%S)
 	sudo rm /var/log/mysql/mysql-slow.log
 
-.PHONY: aal
-aal:
+.PHONY: alp
+alp:
 	sudo cat /var/log/nginx/access.log | alp ltsv --config=/home/isucon/config/alp.yml > ~/log/access.log-$(shell date +%Y-%m-%d-%H-%M-%S)
 	sudo rm /var/log/nginx/access.log
 
