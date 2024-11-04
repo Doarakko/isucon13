@@ -1,4 +1,6 @@
 USER:=isucon
+BIN_NAME:=isupipe
+SERVICE_NAME:=$(BIN_NAME).go.service
 
 # local host
 .PHONY: deploy
@@ -25,3 +27,7 @@ setup:
 
 bench:
 	./bench run --enable-ssl
+
+.PHONY: watch-service-log
+watch-service-log:
+	sudo journalctl -u $(SERVICE_NAME) -n10 -f

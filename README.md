@@ -86,8 +86,17 @@ mysql -u isucon -pisucon isupipe
 ### プロセス確認
 
 ```sh
+ssh isucon13
 systemctl list-unit-files --type=service
 ```
+
+### サービスログの確認
+
+```sh
+ssh isucon13
+make watch-service-log
+```
+
 
 ## References
 
