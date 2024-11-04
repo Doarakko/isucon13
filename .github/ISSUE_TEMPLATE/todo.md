@@ -11,6 +11,7 @@ about: todo
 - [ ] install tools
 - [ ] setup NewRelic
 - [ ] setup pprof
+- [ ] setup ssh config
 
 ## End
 

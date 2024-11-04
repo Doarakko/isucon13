@@ -17,3 +17,6 @@ asq:
 aal:
 	sudo cat /var/log/nginx/access.log | alp ltsv -m"/api/livestream/\d+/livecomment","/api/livestream/\d+/reaction","/api/user/.+/icon","/api/livestream/\d+/livecomment/\d+/report","/api/livestream/\d+/moderate","/api/livestream/\d+/statistics","/api/livestream/\d+/ngwords","/api/livestream/\d+/enter","/api/user/.+/statistics","/api/user/.+/theme","/api/livestream/\d+/exit","/api/livestream/\d+/report","/api/livestream/\d+" --sort sum -r > ~/log/access.log-$(shell date +%Y-%m-%d-%H-%M-%S)
 	sudo rm /var/log/nginx/access.log
+
+setup:
+	./setup.sh
