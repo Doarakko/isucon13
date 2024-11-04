@@ -20,3 +20,6 @@ aal:
 
 setup:
 	./setup.sh
+
+bench:
+	./bench run --enable-ssl

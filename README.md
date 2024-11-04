@@ -1,5 +1,13 @@
 # isucon13
 
+## Rules
+
+- 1つの修正ごとにブランチを切ってベンチマークを実行する
+- 以下を PR に添付する
+  - ベンチマークの実行結果
+  - スロークエリの解析結果
+  - アクセスログの解析結果
+
 ## Getting Started
 
 ### ssh
@@ -46,7 +54,7 @@ ssh isucon13
 
 ```sh
 ssh isucon13
-./bench run --enable-ssl
+make bench
 ```
 
 ### スロークエリの解析
