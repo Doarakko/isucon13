@@ -8,21 +8,21 @@ import (
 	"log"
 	"net"
 	"net/http"
-	_ "net/http/pprof"
 	"os"
 	"os/exec"
 	"strconv"
 
 	"github.com/go-sql-driver/mysql"
-	"github.com/gorilla/sessions"
 	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
-	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	echolog "github.com/labstack/gommon/log"
 	"github.com/newrelic/go-agent/v3/integrations/nrecho-v4"
 	"github.com/newrelic/go-agent/v3/newrelic"
+
+	"github.com/gorilla/sessions"
+	"github.com/labstack/echo-contrib/session"
+	echolog "github.com/labstack/gommon/log"
 )
 
 const (
@@ -122,10 +122,6 @@ func initializeHandler(c echo.Context) error {
 }
 
 func main() {
-	go func() { 
-		log.Println(http.ListenAndServe("localhost:6060", nil)) 
-	}() 
-
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
