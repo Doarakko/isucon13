@@ -55,6 +55,22 @@ https://isucon-workshop.trap.show/text/chapter-3/3-pprof.html
 ssh isucon13
 ```
 
+### CPU 使用率・メモリ使用率等の確認
+
+リアルタイムで更新されるため基本的に常に起動しておく
+
+```sh
+ssh isucon13
+top
+```
+
+### DB 接続
+
+```sh
+ssh isucon13
+make mysql
+```
+
 ### ベンチマーク実行
 
 ```sh
@@ -69,19 +85,32 @@ ssh isucon13
 make slowq
 ```
 
-### アクセスログ
+### アクセスログの解析
 
 ```sh
 ssh isucon13
 make alp
 ```
 
-### DB 接続
+### デプロイ
+
+メインブランチ
 
 ```sh
-ssh isucon13
-make mysql
+make deploy
 ```
+
+特定ブランチ
+
+```sh
+make deploy-<branch name>
+```
+
+以下がデプロイ対象で、リスタートも自動で行なっているため追加作業は不要
+
+- app
+- `nginx.conf`
+- `mysqld.cnf`
 
 ### サービスステータスの確認
 
@@ -95,13 +124,6 @@ make check-service-status
 ```sh
 ssh isucon13
 make watch-service-log
-```
-
-### CPU 使用率・メモリ使用率等の確認
-
-```sh
-ssh isucon13
-top
 ```
 
 ## References
