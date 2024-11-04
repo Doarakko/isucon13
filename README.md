@@ -108,7 +108,7 @@ make deploy-<branch name>
 
 以下がデプロイ対象で、リスタートも自動で行なっているため追加作業は不要
 
-- app
+- アプリケーション
 - `nginx.conf`
 - `mysqld.cnf`
 
