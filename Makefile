@@ -3,7 +3,7 @@ BIN_NAME:=isupipe
 SERVICE_NAME:=$(BIN_NAME).go.service
 MYSQL_USERNAME:=isucon
 MYSQL_PASSWORD:=isucon
-MYSQL_DB_NAME:=isucon
+MYSQL_DB_NAME:=isupipe
 
 # local host
 .PHONY: deploy
