@@ -43,6 +43,10 @@ sudo systemctl restart isupipe-go.service
 https://newrelic.com/jp/blog/how-to-relic/isucon-go-agent
 
 
+### pprof
+
+https://isucon-workshop.trap.show/text/chapter-3/3-pprof.html
+
 ## Usage
 
 ### ssh
@@ -102,3 +106,4 @@ systemctl list-unit-files --type=service
 - [Ansible playbooks for isucon](https://github.com/pddg/isu12f)
 - [[ISUCON用] 複数台同時デプロイスクリプト(Golang)](https://qiita.com/momotaro98/items/694000dfb736d0316441)
 - [MEMORYストレージエンジンでMySQLのパフォーマンスをあげよう](https://qiita.com/hirose-ma/items/c4a10d31a47a5421bb9c)
+- [traP-isucon-newbie-handson2022](https://github.com/oribe1115/traP-isucon-newbie-handson2022)
