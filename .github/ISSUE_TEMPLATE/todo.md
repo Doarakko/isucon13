@@ -5,25 +5,39 @@ about: todo
 
 # Todo
 
-## Start
+## 開始
 
-- [ ] setup GitHub
-- [ ] install tools
-- [ ] setup NewRelic
-- [ ] setup pprof
-- [ ] setup ssh config
+- [ ] マニュアルを読む
+- [ ] アプリケーションマニュアルを読む
+- [ ] setup
+    - [ ] SSH 接続可能な状態にする
+    - [ ] GitHub を用いて変更を反映できるようにする
+    - [ ] 各種ツールをインストールする
+- [ ] アプリケーションの構成を把握する
+    - サーバ構成
+    - インスタンスサイズ
+- [ ] 使用されている OS・ミドルウェアとそのバージョンを確認する
+    - MySQL
+    - nginx
+- [ ] 初回ベンチマークを実行する
+    -　各種ログ出力を有効にする前のスコアを確認するためにこのタイミングで実行する
+- [ ] 各種ログ出力を有効にする
+    - [ ] nginx
+    - [ ] MySQL スロークエリログ
+    - [ ] New Relic
+    - [ ] pprof
+- [ ] ベンチマークを再実行する
+- [ ] テーブル構成を把握する
+- [ ] データの UPDATE・INSERT・DELETE が行われている箇所を把握する
+- [ ] 方針を立てる
 
-## End
+## 終了前
 
 ### app
 
-- [ ] delete NewRelic 
-- [ ] delete pprof
+- [ ] New Relic の設定を削除
+- [ ] pprof の設定を削除
 
 ### MySQL
 
-- [ ] stop slow query
-
-### nginx
-
-- [ ] stop log
+- [ ] スロークエリログの出力を停止
