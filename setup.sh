@@ -1,6 +1,7 @@
-mkdir ~/log
+USER:=isucon
 
-mkdir ~/tools && cd ~/tools
+mkdir /home/$(USER)/log
+mkdir /home/$(USER)/tools && cd /home/$(USER)/tools
 
 # pt-query-digest
 wget https://github.com/percona/percona-toolkit/archive/refs/tags/v3.5.5.tar.gz

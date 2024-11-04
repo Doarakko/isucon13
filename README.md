@@ -36,7 +36,7 @@ make setup
 ### New Relic
 
 ```sh
-cp ~/webapp/go/.env.example ~/webapp/go/.env
+cp /home/isucon/webapp/go/.env.example /home/isucon/webapp/go/.env
 sudo systemctl restart isupipe-go.service
 ```
 
