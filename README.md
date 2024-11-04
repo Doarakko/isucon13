@@ -83,11 +83,11 @@ ssh isucon13
 make mysql
 ```
 
-### プロセス確認
+### サービスステータスの確認
 
 ```sh
 ssh isucon13
-make check-service-process
+make check-service-status
 ```
 
 ### サービスログの確認
@@ -95,6 +95,13 @@ make check-service-process
 ```sh
 ssh isucon13
 make watch-service-log
+```
+
+### CPU 使用率・メモリ使用率等の確認
+
+```sh
+ssh isucon13
+top
 ```
 
 ## References
@@ -115,3 +122,8 @@ make watch-service-log
 - [[ISUCON用] 複数台同時デプロイスクリプト(Golang)](https://qiita.com/momotaro98/items/694000dfb736d0316441)
 - [MEMORYストレージエンジンでMySQLのパフォーマンスをあげよう](https://qiita.com/hirose-ma/items/c4a10d31a47a5421bb9c)
 - [traP-isucon-newbie-handson2022](https://github.com/oribe1115/traP-isucon-newbie-handson2022)
+- [matsuu/kataribe](https://github.com/matsuu/kataribe)
+- [jpr5/ngrep](https://github.com/jpr5/ngrep/)
+- [netdata/netdata](https://github.com/netdata/netdata)
+- [単独のサーバーの「負荷」の正体を突き止める](https://tetsuyai.hatenablog.com/entry/20120105/1325750731)
+- [MySQLのストレージエンジンについて](https://qiita.com/ishishow/items/280a9d049b8f7bcbc14a)

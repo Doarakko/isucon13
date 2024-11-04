@@ -25,9 +25,11 @@ alp:
 	sudo cat /var/log/nginx/access.log | alp ltsv --config=/home/$(USER)/config/alp.yml > /home/$(USER)/log/access.log-$(shell date +%Y-%m-%d-%H-%M-%S)
 	sudo rm /var/log/nginx/access.log
 
+.PHONY: setup
 setup:
 	./setup.sh
 
+.PHONY: bench
 bench:
 	./bench run --enable-ssl
 
@@ -35,7 +37,8 @@ bench:
 watch-service-log:
 	sudo journalctl -u $(SERVICE_NAME) -n10 -f
 
-check-service-process:
+.PHONY: check-service-status
+check-service-status:
 	systemctl list-unit-files mysql.service nginx.service ${BIN_NAME}*
 
 .PHONY: mysql
