@@ -87,7 +87,7 @@ make mysql
 
 ```sh
 ssh isucon13
-systemctl list-unit-files --type=service
+make check-service-process
 ```
 
 ### サービスログの確認

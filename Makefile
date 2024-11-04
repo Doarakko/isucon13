@@ -35,6 +35,9 @@ bench:
 watch-service-log:
 	sudo journalctl -u $(SERVICE_NAME) -n10 -f
 
+check-service-process:
+	systemctl list-unit-files mysql.service nginx.service ${BIN_NAME}*
+
 .PHONY: mysql
 mysql:
 	mysql -u${MYSQL_USERNAME} -p${MYSQL_PASSWORD} ${MYSQL_DB_NAME}
