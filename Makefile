@@ -1,6 +1,9 @@
 USER:=isucon
 BIN_NAME:=isupipe
 SERVICE_NAME:=$(BIN_NAME).go.service
+MYSQL_USERNAME:=isucon
+MYSQL_PASSWORD:=isucon
+MYSQL_DB_NAME:=isucon
 
 # local host
 .PHONY: deploy
@@ -31,3 +34,7 @@ bench:
 .PHONY: watch-service-log
 watch-service-log:
 	sudo journalctl -u $(SERVICE_NAME) -n10 -f
+
+.PHONY: mysql
+mysql:
+	mysql -u${MYSQL_USERNAME} -p${MYSQL_PASSWORD} ${MYSQL_DB_NAME}

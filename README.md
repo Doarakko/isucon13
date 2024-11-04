@@ -80,7 +80,7 @@ make alp
 
 ```sh
 ssh isucon13
-mysql -u isucon -pisucon isupipe
+make mysql
 ```
 
 ### プロセス確認
@@ -96,7 +96,6 @@ systemctl list-unit-files --type=service
 ssh isucon13
 make watch-service-log
 ```
-
 
 ## References
 
