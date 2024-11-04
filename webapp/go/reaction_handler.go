@@ -46,6 +46,12 @@ func getReactionsHandler(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, "livestream_id in path must be integer")
 	}
 
+	tx, err := dbConn.BeginTxx(ctx, nil)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "failed to begin transaction: "+err.Error())
+	}
+	defer tx.Rollback()
+
 	query := "SELECT * FROM reactions WHERE livestream_id = ? ORDER BY created_at DESC"
 	if c.QueryParam("limit") != "" {
 		limit, err := strconv.Atoi(c.QueryParam("limit"))
@@ -56,7 +62,7 @@ func getReactionsHandler(c echo.Context) error {
 	}
 
 	reactionModels := []ReactionModel{}
-	if err := dbConn.SelectContext(ctx, &reactionModels, query, livestreamID); err != nil {
+	if err := tx.SelectContext(ctx, &reactionModels, query, livestreamID); err != nil {
 		return echo.NewHTTPError(http.StatusNotFound, "failed to get reactions")
 	}
 
@@ -68,6 +74,10 @@ func getReactionsHandler(c echo.Context) error {
 		}
 
 		reactions[i] = reaction
+	}
+
+	if err := tx.Commit(); err != nil {
+		return echo.NewHTTPError(http.StatusInternalServerError, "failed to commit: "+err.Error())
 	}
 
 	return c.JSON(http.StatusOK, reactions)
