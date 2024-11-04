@@ -1,6 +1,7 @@
-mkdir ~/log
+USER:=isucon
 
-mkdir ~/tools && cd ~/tools
+mkdir /home/$(USER)/log
+mkdir /home/$(USER)/tools && cd /home/$(USER)/tools
 
 # pt-query-digest
 wget https://github.com/percona/percona-toolkit/archive/refs/tags/v3.5.5.tar.gz
@@ -14,3 +15,7 @@ wget https://github.com/tkuchiki/alp/releases/download/v1.0.21/alp_linux_amd64.t
 tar zxvf alp_linux_amd64.tar.gz
 sudo install alp /usr/local/bin
 alp --version
+
+# pprof
+sudo apt update
+sudo apt install graphviz

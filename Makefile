@@ -1,3 +1,10 @@
+USER:=isucon
+BIN_NAME:=isupipe
+SERVICE_NAME:=$(BIN_NAME).go.service
+MYSQL_USERNAME:=isucon
+MYSQL_PASSWORD:=isucon
+MYSQL_DB_NAME:=isupipe
+
 # local host
 .PHONY: deploy
 deploy:
@@ -8,14 +15,14 @@ deploy-%:
 	./deploy.sh $*
 
 # remote host
-.PHONY: analyze-slow-query
-asq:
-	sudo pt-query-digest /var/log/mysql/mysql-slow.log > ~/log/mysql-slow.log-$(shell date +%Y-%m-%d-%H-%M-%S)
+.PHONY: slowq
+slowq:
+	sudo pt-query-digest /var/log/mysql/mysql-slow.log > /home/$(USER)/log/mysql-slow.log-$(shell date +%Y-%m-%d-%H-%M-%S)
 	sudo rm /var/log/mysql/mysql-slow.log
 
-.PHONY: analyze-access-log
-aal:
-	sudo cat /var/log/nginx/access.log | alp ltsv -m"/api/livestream/\d+/livecomment","/api/livestream/\d+/reaction","/api/user/.+/icon","/api/livestream/\d+/livecomment/\d+/report","/api/livestream/\d+/moderate","/api/livestream/\d+/statistics","/api/livestream/\d+/ngwords","/api/livestream/\d+/enter","/api/user/.+/statistics","/api/user/.+/theme","/api/livestream/\d+/exit","/api/livestream/\d+/report","/api/livestream/\d+" --sort sum -r > ~/log/access.log-$(shell date +%Y-%m-%d-%H-%M-%S)
+.PHONY: alp
+alp:
+	sudo cat /var/log/nginx/access.log | alp ltsv --config=/home/$(USER)/config/alp.yml > /home/$(USER)/log/access.log-$(shell date +%Y-%m-%d-%H-%M-%S)
 	sudo rm /var/log/nginx/access.log
 
 setup:
@@ -23,3 +30,14 @@ setup:
 
 bench:
 	./bench run --enable-ssl
+
+.PHONY: watch-service-log
+watch-service-log:
+	sudo journalctl -u $(SERVICE_NAME) -n10 -f
+
+check-service-process:
+	systemctl list-unit-files mysql.service nginx.service ${BIN_NAME}*
+
+.PHONY: mysql
+mysql:
+	mysql -u${MYSQL_USERNAME} -p${MYSQL_PASSWORD} ${MYSQL_DB_NAME}

@@ -1,0 +1,20 @@
+---
+sort: sum
+reverse: true
+query_string: true
+output: count,5xx,method,uri,min,max,sum,avg,p99
+
+matching_groups:
+  - /api/livestream/\d+/livecomment
+  - /api/livestream/\d+/reaction
+  - /api/user/.+/icon
+  - /api/livestream/\d+/livecomment/\d+/report
+  - /api/livestream/\d+/moderate
+  - /api/livestream/\d+/statistics
+  - /api/livestream/\d+/ngwords
+  - /api/livestream/\d+/enter
+  - /api/user/.+/statistics
+  - /api/user/.+/theme
+  - /api/livestream/\d+/exit
+  - /api/livestream/\d+/report
+  - /api/livestream/\d+

@@ -36,12 +36,16 @@ make setup
 ### New Relic
 
 ```sh
-cp ~/webapp/go/.env.example ~/webapp/go/.env
+cp /home/isucon/webapp/go/.env.example /home/isucon/webapp/go/.env
 sudo systemctl restart isupipe-go.service
 ```
 
 https://newrelic.com/jp/blog/how-to-relic/isucon-go-agent
 
+
+### pprof
+
+https://isucon-workshop.trap.show/text/chapter-3/3-pprof.html
 
 ## Usage
 
@@ -62,27 +66,35 @@ make bench
 
 ```sh
 ssh isucon13
-make asq
+make slowq
 ```
 
 ### アクセスログ
 
 ```sh
 ssh isucon13
-make aal
+make alp
 ```
 
 ### DB 接続
 
 ```sh
 ssh isucon13
-mysql -u isucon -pisucon isupipe
+make mysql
 ```
 
 ### プロセス確認
 
 ```sh
-systemctl list-unit-files --type=service
+ssh isucon13
+make check-service-process
+```
+
+### サービスログの確認
+
+```sh
+ssh isucon13
+make watch-service-log
 ```
 
 ## References
@@ -102,3 +114,4 @@ systemctl list-unit-files --type=service
 - [Ansible playbooks for isucon](https://github.com/pddg/isu12f)
 - [[ISUCON用] 複数台同時デプロイスクリプト(Golang)](https://qiita.com/momotaro98/items/694000dfb736d0316441)
 - [MEMORYストレージエンジンでMySQLのパフォーマンスをあげよう](https://qiita.com/hirose-ma/items/c4a10d31a47a5421bb9c)
+- [traP-isucon-newbie-handson2022](https://github.com/oribe1115/traP-isucon-newbie-handson2022)
