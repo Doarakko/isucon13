@@ -17,13 +17,17 @@ deploy-%:
 # remote host
 .PHONY: slowq
 slowq:
-	sudo pt-query-digest /var/log/mysql/mysql-slow.log > /home/$(USER)/log/mysql-slow.log-$(shell date +%Y-%m-%d-%H-%M-%S)
+	$(eval when := $(shell date +%Y-%m-%d-%H-%M-%S))
+	sudo pt-query-digest /var/log/mysql/mysql-slow.log > /home/$(USER)/log/mysql-slow.log-$(when)
 	sudo rm /var/log/mysql/mysql-slow.log
+	cat /home/$(USER)/log/mysql-slow.log-$(when)
 
 .PHONY: alp
 alp:
-	sudo cat /var/log/nginx/access.log | alp ltsv --config=/home/$(USER)/config/alp.yml > /home/$(USER)/log/access.log-$(shell date +%Y-%m-%d-%H-%M-%S)
+	$(eval when := $(shell date +%Y-%m-%d-%H-%M-%S))
+	sudo cat /var/log/nginx/access.log | alp ltsv --config=/home/$(USER)/config/alp.yml > /home/$(USER)/log/access.log-$(when)
 	sudo rm /var/log/nginx/access.log
+	cat /home/$(USER)/log/access.log-$(when)
 
 .PHONY: setup
 setup:
