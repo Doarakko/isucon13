@@ -13,12 +13,16 @@
 
 ### ssh
 
+各種コマンドは isucon ユーザーで SSH 接続する想定で作られています。
+isucon ユーザーで SSH できるように、以下を参考に公開鍵を登録してください。
+https://isucon-workshop.trap.show/text/chapter-2/2-EnterServerAndSomeSetting.html
+
 `~/.ssh/config`
 
 ```
 Host isucon13
   HostName ec2-18-179-36-166.ap-northeast-1.compute.amazonaws.com
-  User ubuntu
+  User isucon
   IdentityFile ~/.ssh/doarakko.pem
 ```
 

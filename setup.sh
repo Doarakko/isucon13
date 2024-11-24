@@ -1,7 +1,9 @@
 USER:=isucon
 
-mkdir /home/$(USER)/log
-mkdir /home/$(USER)/tools && cd /home/$(USER)/tools
+mkdir /home/$USER/log
+mkdir /home/$USER/tools && cd /home/$USER/tools
+mkdir -p /home/$USER/mysql/mysql.conf.d
+mkdir /home/$USER/nginx
 
 # pt-query-digest
 wget https://github.com/percona/percona-toolkit/archive/refs/tags/v3.5.5.tar.gz
