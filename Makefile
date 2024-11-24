@@ -8,11 +8,11 @@ MYSQL_DB_NAME:=isupipe
 # local host
 .PHONY: deploy
 deploy:
-	./deploy.sh main
+	./deploy.sh $(BIN_NAME) main
 
 .PHONY: deploy-%
 deploy-%:
-	./deploy.sh $*
+	./deploy.sh $(BIN_NAME) $*
 
 # remote host
 .PHONY: slowq
