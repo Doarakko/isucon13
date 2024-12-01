@@ -18,3 +18,4 @@ matching_groups:
   - /api/livestream/\d+/exit
   - /api/livestream/\d+/report
   - /api/livestream/\d+
+  - /api/livestream/search?tag=.+
