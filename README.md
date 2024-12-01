@@ -1,5 +1,11 @@
 # isucon13
 
+## Manual
+
+- [本選当日マニュアル](https://github.com/isucon/isucon13/blob/main/docs/cautionary_note.md)
+- [アプリケーションマニュアル](https://github.com/isucon/isucon13/blob/main/docs/isupipe.md)
+- [コード](https://github.com/isucon/isucon13)
+
 ## Rules
 
 - 1つの修正ごとにブランチを切ってベンチマークを実行する
@@ -133,7 +139,6 @@ make watch-service-log
 ## References
 
 - [ISUCON初心者向け講習会](https://isucon-workshop.trap.show/)
-- [isucon/isucon13](https://github.com/isucon/isucon13)
 - [matsuu/aws-isucon](https://github.com/matsuu/aws-isucon)
 - [south37/00_timeline.md](https://gist.github.com/south37/d4a5a8158f49e067237c17d13ecab12a)
 - [ISUCON入門以前_ISUNARABE_LT#1](https://speakerdeck.com/sadnessojisan/isuconru-men-yi-qian-isunarabe-lt-number-1)
