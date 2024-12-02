@@ -12,6 +12,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"time"
 
 	"github.com/go-sql-driver/mysql"
 	"github.com/gorilla/sessions"
@@ -23,6 +24,7 @@ import (
 	echolog "github.com/labstack/gommon/log"
 	"github.com/newrelic/go-agent/v3/integrations/nrecho-v4"
 	"github.com/newrelic/go-agent/v3/newrelic"
+	"github.com/patrickmn/go-cache"
 )
 
 const (
@@ -34,6 +36,7 @@ var (
 	powerDNSSubdomainAddress string
 	dbConn                   *sqlx.DB
 	secret                   = []byte("isucon13_session_cookiestore_defaultsecret")
+	gCache                   *cache.Cache
 )
 
 func init() {
@@ -41,6 +44,8 @@ func init() {
 	if secretKey, ok := os.LookupEnv("ISUCON13_SESSION_SECRETKEY"); ok {
 		secret = []byte(secretKey)
 	}
+
+	gCache = cache.New(5*time.Minute, 10*time.Minute)
 }
 
 type InitializeResponse struct {
@@ -122,9 +127,9 @@ func initializeHandler(c echo.Context) error {
 }
 
 func main() {
-	go func() { 
-		log.Println(http.ListenAndServe("localhost:6060", nil)) 
-	}() 
+	go func() {
+		log.Println(http.ListenAndServe("localhost:6060", nil))
+	}()
 
 	err := godotenv.Load()
 	if err != nil {
