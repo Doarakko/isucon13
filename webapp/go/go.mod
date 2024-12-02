@@ -23,6 +23,7 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/newrelic/go-agent/v3 v3.35.0 // indirect
 	github.com/newrelic/go-agent/v3/integrations/nrecho-v4 v1.1.2 // indirect
+	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
 	golang.org/x/net v0.30.0 // indirect

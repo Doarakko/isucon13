@@ -16,6 +16,7 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/v4"
+	"github.com/patrickmn/go-cache"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -88,6 +89,12 @@ func getIconHandler(c echo.Context) error {
 	ctx := c.Request().Context()
 
 	username := c.Param("username")
+	cacheName := fmt.Sprintf("icon_%s", username)
+
+	icon, found := gCache.Get(cacheName)
+	if found {
+		return c.Blob(http.StatusOK, "image/jpeg", icon.([]byte))
+	}
 
 	var image []byte
 	if err := dbConn.GetContext(ctx, &image, "SELECT image FROM icons i INNER JOIN users u ON u.id = i.user_id WHERE u.name = ?", username); err != nil {
@@ -97,6 +104,7 @@ func getIconHandler(c echo.Context) error {
 			return echo.NewHTTPError(http.StatusInternalServerError, "failed to get user icon: "+err.Error())
 		}
 	}
+	gCache.Set(fmt.Sprintf("icon_%s", username), image, cache.NoExpiration)
 
 	return c.Blob(http.StatusOK, "image/jpeg", image)
 }
