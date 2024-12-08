@@ -17,11 +17,24 @@
 
 ## Getting Started
 
+### GitHub issue の作成
+
+各種手順を Todo リストにしたテンプレートを用意しているためそちらを利用する
+
 ### ssh
 
 各種コマンドは isucon ユーザーで SSH 接続する想定で作られています。
 isucon ユーザーで SSH できるように、以下を参考に公開鍵を登録してください。
 https://isucon-workshop.trap.show/text/chapter-2/2-EnterServerAndSomeSetting.html
+
+#### local host
+
+```sh
+cd ~/.ssh
+ssh-keygen -t ed25519 -f isucon13
+cat ~/.ssh/isucon13.pub
+<public key>
+```
 
 `~/.ssh/config`
 
@@ -29,19 +42,61 @@ https://isucon-workshop.trap.show/text/chapter-2/2-EnterServerAndSomeSetting.htm
 Host isucon13
   HostName ec2-18-179-36-166.ap-northeast-1.compute.amazonaws.com
   User isucon
-  IdentityFile ~/.ssh/doarakko.pem
+  IdentityFile ~/.ssh/isucon13.pub
+```
+
+#### remote host
+
+```sh
+echo "<public key>" >> ~/.ssh/authorized_keys
 ```
 
 ### GitHub
 
 https://isucon-workshop.trap.show/text/chapter-3/0-Github.html
 
-### setup tools
+### 秘伝のタレを配置
+
+- `Makefile`
+  - 各種変数を更新
+    - `BIN_NAME`
+    - `SERVICE_NAME`
+    - `MYSQL_DB_NAME`
+  - ベンチ実行コマンドを更新
+- `setup.sh`
+- `deploy.sh`
+  - 接続する SSH ユーザ名を更新
+- `config/alp.yml`
+
+### Setup tools
+
+- MySQL・nginx の設定ファイルをホームディレクトリ下にコピー
+- alp
+- pt-query-digest
+- pprof
 
 ```sh
 ssh isucon13
 make setup
 ```
+
+### MySQL・nginx の設定ファイルをGit管理
+
+`make setup` 実行後に行うこと
+
+```sh
+git add mysql/* nginx/*
+git commit -m "add MySQL and nginx config files"
+git push origin main
+```
+
+### MySQL のスロークエリのログを有効にする
+
+https://isucon-workshop.trap.show/text/chapter-3/1-SlowQueryLog.html
+
+### nginx のアクセスログのフォーマットを変更する
+
+https://isucon-workshop.trap.show/text/chapter-3/2-AccessLog.html
 
 ### New Relic
 
@@ -63,15 +118,6 @@ https://isucon-workshop.trap.show/text/chapter-3/3-pprof.html
 
 ```sh
 ssh isucon13
-```
-
-### CPU 使用率・メモリ使用率等の確認
-
-リアルタイムで更新されるため基本的に常に起動しておく
-
-```sh
-ssh isucon13
-top
 ```
 
 ### DB 接続
@@ -134,6 +180,25 @@ make check-service-status
 ```sh
 ssh isucon13
 make watch-service-log
+```
+
+## Hints
+
+### CPU 使用率・メモリ使用率等の確認
+
+リアルタイムで更新されるため基本的に常に起動しておく
+
+```sh
+ssh isucon13
+top
+```
+
+### nginx のアクセスログから特定のリクエストを抽出
+
+```sh
+ssh isucon13
+sudo grep -E "/api/user/.+/icon" /var/log/nginx/access.log
+sudo zgrep -E "/api/user/.+/icon" /var/log/nginx/access.log.gz
 ```
 
 ## References
